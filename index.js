@@ -39,8 +39,8 @@ app.get("/api", async(req,res)=>{
   
   
 }) //end of async
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
 //link untuk chat chatgpt 
 // https://chatgpt.com/c/70a9b974-6f21-4731-acda-eca78b5ccff0
