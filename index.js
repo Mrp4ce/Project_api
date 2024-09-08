@@ -41,7 +41,7 @@ app.get("/api", async(req,res)=>{
 }) //end of async1
 
 
-app.get("/api/sdy", async(req,res)=>{
+app.use("/api/sdy", async(req,res)=>{
   try {
    const {data }=  await axios.get("https://nomorkiajit.com/hksgpsdy");
    const $ = cheerio.load(data)
