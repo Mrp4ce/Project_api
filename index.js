@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 //url yang akan di scrape
 let url = "https://nomorkiajit.com/"
-app.get("/ap", async(req,res)=>{
+app.get("/api/hk", async(req,res)=>{
   try {
    const {data }=  await axios.get(url);
    const $ = cheerio.load(data)
@@ -41,7 +41,7 @@ app.get("/ap", async(req,res)=>{
 }) //end of async1
 
 
-app.use("/api/sdy", async(req,res)=>{
+app.use("/api/syd", async(req,res)=>{
   try {
    const {data }=  await axios.get("https://nomorkiajit.com/hksgpsdy");
    const $ = cheerio.load(data)
