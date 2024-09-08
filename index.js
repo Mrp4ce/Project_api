@@ -7,7 +7,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 //url yang akan di scrape
 let url = "https://nomorkiajit.com/"
-// app get untuk api Hk
 app.get("/api", async(req,res)=>{
   try {
    const {data }=  await axios.get(url);
@@ -40,56 +39,6 @@ app.get("/api", async(req,res)=>{
   
   
 }) //end of async
-
-
-// app get untuk api sydney
-
-app.get("/api/sdy",async(req,res=>{
-  try {
-    const {datas} = await axios.get("https://nomorkiajit.com/hksgpsdy")
-    const $ = cheerio.load(datas)
-    let raw_result = []
-        $('table.table.text-center').each((i,element)=>{
-      let re = $(element).find('tbody').children('.text-uppercase')
-            re.each((ind,val)=>{
-              let tanggal = $(val).find("td")[0]
-              let res_tgl = $(tanggal).text()
-              let hari = $(val).find("td")[1]
-              let res_hari = $(hari).text()
-              let result = $(val).find("td")[4]
-              let lastResult = $(result).text()
-              raw_result.push({
-                res_tgl,
-                res_hari,
-                lastResult
-              })
-            })
-    // console.log(`Tanggal : ${tanggal}, Hari : ${hari}, Hasil : ${hasil}`)
-    }) //end of each Element
-   res.json(raw_result)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  } catch (e) {
-    console.error(e);
-        res.status(500).send('Error occurred while scraping');
-  }
-  
-  
-  
-  
-})) // end of asyn api sdy
-
-
-
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
